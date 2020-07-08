@@ -4,19 +4,18 @@ import "react-responsive-modal/styles.css";
 import {AnimatePresence} from "framer-motion";
 import {ApolloProvider} from "@apollo/react-hooks";
 import {useApolloClient} from "@apollo/react-hooks";
-import {useApollo} from "client/apollo/client";
+// import {useApollo} from "client/apollo/client";
 
 const isProduction = process.env.NODE_ENV === "production";
 
 export default function App({Component, pageProps, store, router, status}) {
-  const apolloClient = useApollo(pageProps.initialApolloState);
+
 
   return (
     <>
       <Head>
-
       </Head>
-      <ApolloProvider client={apolloClient}>
+      {/*<ApolloProvider client={apolloClient}>*/}
         <>
           <AnimatePresence exitBeforeEnter>
             <Component
@@ -25,7 +24,7 @@ export default function App({Component, pageProps, store, router, status}) {
             />
           </AnimatePresence>
         </>
-      </ApolloProvider>
+      {/*</ApolloProvider>*/}
       <style global jsx>
         {`
             body {
@@ -62,19 +61,20 @@ export default function App({Component, pageProps, store, router, status}) {
     </>
   );
 }
-// App.getInitialProps = async ({Component, ctx}) => {
-//     let pageProps = {};
-//     const {store, req, isServer, res} = ctx;
-//     const cookie = isServer ? req.headers.cookie : "";
-//
-//     if (res && res.statusCode === 404) {
-//         const status = 404;
-//         return {status};
-//     }
-//
-//     if (Component.getInitialProps) {
-//         pageProps = await Component.getInitialProps({ctx});
-//     }
-//
-//     return {pageProps};
-// };
+
+App.getInitialProps = async ({Component, ctx}) => {
+    let pageProps = {};
+    const {store, req, isServer, res} = ctx;
+    const cookie = isServer ? req.headers.cookie : "";
+
+    if (res && res.statusCode === 404) {
+        const status = 404;
+        return {status};
+    }
+
+    if (Component.getInitialProps) {
+        pageProps = await Component.getInitialProps({ctx});
+    }
+
+    return {pageProps};
+};

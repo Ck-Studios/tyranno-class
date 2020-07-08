@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_PATH=src next dev",
+    "dev": "NODE_PATH=src next dev -p 8081",
     "start": "NODE_PATH=src next start -p 8081",
     "build": "npm run clean && NODE_PATH=src next build",
     "export": "NODE_PATH=src next export",
