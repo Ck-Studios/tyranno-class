@@ -2,8 +2,9 @@ import {useEffect} from "react";
 import {useRouter} from "next/router";
 import {axiosClient} from "client/network/axiosClient";
 import styled from "styled-components";
-import Header from "common/header";
+import Header from "common/components/Header";
 import LectureCard from "main/components/LectureCard";
+import Footer from "common/components/Footer";
 
 export default function MainContainer() {
   return (
@@ -27,6 +28,7 @@ export default function MainContainer() {
           }
         </div>
       </ContentWrapper>
+      <Footer />
     </>
   );
 }
@@ -37,6 +39,7 @@ const ItemFrame = styled.div`
 
 const ContentWrapper = styled.div`
   margin: 72px auto 0 auto;
+  padding-bottom: 84px;
 `;
 
 const InlineText = styled.span`
