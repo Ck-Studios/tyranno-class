@@ -33,11 +33,9 @@ export default class Document extends NextDocument {
       <html>
       <Head/>
       <body>
-      <div className="structure-container">
         <Main/>
         <div id="modal"/>
         <NextScript/>
-      </div>
       </body>
       </html>
     );

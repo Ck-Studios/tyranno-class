@@ -7,6 +7,7 @@ import LectureCard from "main/components/LectureCard";
 import Footer from "common/components/Footer";
 
 export default function MainContainer() {
+  const router = useRouter();
   return (
     <>
       <Header/>
@@ -15,10 +16,17 @@ export default function MainContainer() {
         <Title>
           진행중인 클래스 <InlineText>3</InlineText>
         </Title>
+        {/*{ pathname: "/project", as: "/project", query: { defaultBehaviors: "resetFilter" } }*/}
         <div>
           {
             [1, 2, 3].map((item, index) => (
               <ItemFrame
+                onClick={() => router.push({
+                  pathname: "/class/[id]",
+                  query: {
+                    id: index
+                  }
+                }, `/class/${index + 1}`)}
                 index={index}
                 key={index.toString()}
               >
@@ -44,7 +52,7 @@ const ContentWrapper = styled.div`
 
 const InlineText = styled.span`
   font-size: 26px;
-  color: #19c88c; 
+  color: #19c88c;
 `;
 
 const Title = styled.p`

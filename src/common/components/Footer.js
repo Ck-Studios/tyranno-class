@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Color} from "common/Theme/Theme";
+import {colorSet} from "common/Theme/Theme";
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
         <MenuFrame>
           <LogoFrame>
             <Image
-              src="static/images/logo/tyranno-logo-light-08.png"
+              src="/static/images/logo/tyranno-logo-light-08.png"
             />
           </LogoFrame>
           <MenuText marginLeft={24}>
@@ -35,13 +35,13 @@ export default function Footer() {
 const Copyrights = styled.p`
   font-size: 12px;
   line-height: 1.5;
-  color: ${Color.gray1};
+  color: ${colorSet.gray1};
 `;
 
 const ContactMail = styled.p`
   font-size: 12px;
   font-weight: 500;
-  color: ${Color.pointColor};
+  color: ${colorSet.pointColor};
   margin-bottom: 10px;
 `;
 
@@ -50,13 +50,13 @@ const CompanyInfoText = styled.p`
   margin-bottom: 10px;
   font-size: 12px;
   line-height: 2;
-  color: ${Color.gray1};
+  color: ${colorSet.gray1};
 `;
 
 const MenuText = styled.p`
   margin-left: ${({marginLeft}) => marginLeft || 0}px;
   font-size: 14px;
-  color: ${Color.gray1};
+  color: ${colorSet.gray1};
 `;
 
 const MenuFrame = styled.div`
@@ -80,5 +80,5 @@ const FooterWrapper = styled.div`
   height: 240px;
   display: flex;
   align-items: center;
-  background: ${Color.black};
+  background: ${colorSet.black};
 `;

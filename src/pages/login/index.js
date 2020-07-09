@@ -1,11 +1,11 @@
-import MainContainer from "main/containers/MainContainer";
+import LoginContainer from "login/containers/LoginContainer.js";
 import {initializeApollo} from "client/apollo/client";
 import AnimationFrame from "common/components/AnimationFrame";
 
 export default function Index() {
   return (
     <AnimationFrame>
-      <MainContainer/>
+      <LoginContainer/>
     </AnimationFrame>
   )
 }
