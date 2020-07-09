@@ -5,6 +5,7 @@ import {AnimatePresence} from "framer-motion";
 import {ApolloProvider} from "@apollo/react-hooks";
 import {useApolloClient} from "@apollo/react-hooks";
 // import {useApollo} from "client/apollo/client";
+import "styles/index.css";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -26,17 +27,19 @@ export default function App({Component, pageProps, store, router, status}) {
         </>
       {/*</ApolloProvider>*/}
       <style global jsx>
-        {`
+        {`  
+            html {
+                box-sizing: border-box;
+                font-size: 16px;
+            }
+            
             body {
-                margin: 0 auto;
-                max-width: 756px !important;
+                width: 100%;
                 height: 100%;
             }
             
-            html {
-                box-sizing: border-box;
-                height: 100%;
-                font-size: 16px;
+            .structure-container {
+              margin: 0 auto;
             }
             
             * { font-family: 'Spoqa Han Sans', 'Spoqa Han Sans KR', 'Sans-serif'; }

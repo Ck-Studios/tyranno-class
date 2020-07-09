@@ -1,6 +1,6 @@
 import React from "react";
-import NextDocument, { Head, Main, NextScript } from "next/document";
-import { ServerStyleSheet } from "styled-components";
+import NextDocument, {Head, Main, NextScript} from "next/document";
+import {ServerStyleSheet} from "styled-components";
 
 export default class Document extends NextDocument {
   static async getInitialProps(ctx) {
@@ -31,12 +31,14 @@ export default class Document extends NextDocument {
   render() {
     return (
       <html>
-        <Head />
-        <body>
-          <Main />
-          <div id="modal" />
-          <NextScript />
-        </body>
+      <Head/>
+      <body>
+      <div className="structure-container">
+        <Main/>
+        <div id="modal"/>
+        <NextScript/>
+      </div>
+      </body>
       </html>
     );
   }
