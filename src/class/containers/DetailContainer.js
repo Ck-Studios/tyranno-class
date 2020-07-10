@@ -1,6 +1,6 @@
 import {useState} from "react";
-import Header from "common/components/Header";
-import Footer from "common/components/Footer";
+import Header from "common/components/header/Header";
+import Footer from "common/components/footer/Footer";
 import styled from "styled-components";
 import {CircleWrapper, colorSet, Text} from "common/Theme/Theme";
 import Schedule from "class/components/schedule/Schedule";

@@ -2,9 +2,9 @@ import {useEffect} from "react";
 import {useRouter} from "next/router";
 import {axiosClient} from "client/network/axiosClient";
 import styled from "styled-components";
-import Header from "common/components/Header";
+import Header from "common/components/header/Header";
 import LectureCard from "main/components/LectureCard";
-import Footer from "common/components/Footer";
+import Footer from "common/components/footer/Footer";
 
 export default function MainContainer() {
   const router = useRouter();

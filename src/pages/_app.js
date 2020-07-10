@@ -46,8 +46,8 @@ export default function App({Component, pageProps, store, router, status}) {
                 height: 100%;
             }
             
-            button:focus {
-                  outline: 0;
+            button:focus, input:focus {
+               outline: 0;
             }
             
             .structure-container {

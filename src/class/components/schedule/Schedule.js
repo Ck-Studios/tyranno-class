@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {useState} from "react";
 import {colorSet, Text, InlineText} from "common/Theme/Theme";
+import {useRouter} from "next/router";
 
 const SCHEDULE_SET = [
   {
@@ -43,6 +44,7 @@ const SCHEDULE_SET = [
 
 export default function Schedule() {
   const [visibleIndex, updateVisibleIndex] = useState(0);
+  const router = useRouter();
   return (
     <Wrapper>
       <Text
@@ -102,7 +104,9 @@ export default function Schedule() {
           - 블라블라
         </Text>
       </NoticeBox>
-      <ApplyButton>
+      <ApplyButton
+        onClick={() => router.push("/purchase")}
+      >
         클래스 신청하기
       </ApplyButton>
       <PricingBox>
@@ -156,7 +160,7 @@ const TimelineBox = styled.div`
 
 const AccordionWrapper = styled.div`
   border-top: 1px solid ${({index}) => index === 0 ? colorSet.gray1 : "transparent"};
-  border-bottom: 1px solid ${colorSet.gray1};
+  border-bottom: 1px solid ${colorSet.gray5};
   padding: 20px 0;
 `;
 

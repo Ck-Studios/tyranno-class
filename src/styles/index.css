@@ -7,6 +7,10 @@
     width: 1200px;
 }
 
+.restrict-width-640 {
+    width: 640px;
+}
+
 .restrict-max-width {
     max-width: 1200px;
 }

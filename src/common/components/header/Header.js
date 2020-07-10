@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import {colorSet} from "common/Theme/Theme";
 import {useRouter} from "next/router";
 
-export default function Header() {
+export default function Header({mode}) {
   const router = useRouter();
   return (
-    <HeaderWrapper className="flex justify-center items-center">
+    <HeaderWrapper className="flex justify-center items-center" mode={mode}>
       <div className="flex justify-between restrict-width">
         <div className="header-left flex items-center">
           <LogoFrame onClick={() => router.push("/main")}>
@@ -12,18 +13,23 @@ export default function Header() {
               src="/static/images/logo/tyrannologo-05.png"
             />
           </LogoFrame>
-          <MenuFont
-            marginLeft={62}
-            underline
-          >
-            오프라인 클래스
-          </MenuFont>
+          {
+            mode !== "simple" &&
+              <>
+                <MenuFont
+                  marginLeft={62}
+                  underline
+                >
+                  오프라인 클래스
+                </MenuFont>
 
-          <MenuFont
-            marginLeft={40}
-          >
-            온라인 클래스
-          </MenuFont>
+                <MenuFont
+                  marginLeft={40}
+                >
+                  온라인 클래스
+                </MenuFont>
+              </>
+          }
         </div>
         <div className="header-right flex align-center" onClick={() => router.push("/login")}>
           <MenuFont>
@@ -57,5 +63,7 @@ const LogoFrame = styled.div`
 const HeaderWrapper = styled.div`
   margin: 0 auto;
   width: 100%;
-  height: 90px;
+  height: ${({mode}) => mode === "simple" ? 80 : 90}px;
+  padding: ${({mode}) => mode === "simple" ? "0 24px" : "initial"};
+  background: ${colorSet.white};
 `;
