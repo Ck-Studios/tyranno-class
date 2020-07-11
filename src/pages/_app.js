@@ -5,13 +5,16 @@ import "react-responsive-modal/styles.css";
 import {AnimatePresence} from "framer-motion";
 import {ApolloProvider} from "@apollo/react-hooks";
 import {useApolloClient} from "@apollo/react-hooks";
+import {Provider} from "react-redux";
+import {useStore} from "client/redux/redux";
 import {initializeApollo, useApollo} from "client/apollo/client";
 import "styles/index.css";
 
 const isProduction = process.env.NODE_ENV === "production";
 
-export default function App({Component, pageProps, store, router, status}) {
+export default function App({Component, pageProps, router, status}) {
   const apolloClient = useApollo(pageProps?.initialApolloState);
+  const store = useStore(pageProps.initialReduxState);
 
   useEffect(() => {
       if(window) {
@@ -23,6 +26,7 @@ export default function App({Component, pageProps, store, router, status}) {
     <>
       <Head>
       </Head>
+      <Provider store={store}>
         <ApolloProvider client={apolloClient}>
           <>
             <AnimatePresence exitBeforeEnter>
@@ -33,6 +37,7 @@ export default function App({Component, pageProps, store, router, status}) {
             </AnimatePresence>
           </>
         </ApolloProvider>
+      </Provider>
       <style global jsx>
         {`  
             @font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }

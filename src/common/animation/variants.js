@@ -47,3 +47,8 @@ export const LIST_ITEM_VARIANTS = {
     }
   }
 };
+
+export const ACCORDION_VARIANTS = {
+  open: { opacity: 1, height: "auto" },
+  collapsed: { opacity: 0.7, height: 0 },
+};

@@ -1,7 +1,22 @@
+import {useEffect} from "react";
 import styled from "styled-components";
 import {colorSet} from "common/Theme/Theme";
+import {useSelector, useDispatch} from "react-redux";
+import {login} from "modules/authentication";
+import {useRouter} from "next/router";
 
 export default function LoginContainer() {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const user = useSelector(state => state.authentication.user);
+
+  useEffect(() => {
+    if(user) {
+      router.replace("/main");
+    }
+  }, [user]);
+
+
   return (
     <ContainerWrapper className="flex">
       <LeftScreen>
@@ -19,6 +34,7 @@ export default function LoginContainer() {
 
           <ButtonWrapper>
             <ButtonFrame
+              onClick={() => dispatch(login())}
               background={colorSet.kakao}
               className="flex justify-center align-center"
             >
@@ -29,6 +45,7 @@ export default function LoginContainer() {
               background={colorSet.naver}
               color={colorSet.white}
               className="flex justify-center align-center"
+              onClick={() => dispatch(login())}
             >
               네이버로 시작하기
             </ButtonFrame>
@@ -36,6 +53,7 @@ export default function LoginContainer() {
               marginTop={10}
               background={colorSet.google}
               className="flex justify-center align-center"
+              onClick={() => dispatch(login())}
             >
               구글로 시작하기
             </ButtonFrame>

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import {useState} from "react";
 import {colorSet, Text, InlineText} from "common/Theme/Theme";
 import {useRouter} from "next/router";
+import {ACCORDION_VARIANTS} from "common/animation/variants";
+import {AnimatePresence, motion} from "framer-motion";
 
 const SCHEDULE_SET = [
   {
@@ -65,9 +67,15 @@ export default function Schedule() {
             <Text fontSize="16px" lineHeight={1.5} fontWeight="bold">
               {schedule.title}
             </Text>
+
             {
               visibleIndex === index &&
-              <TimelineBox>
+              <TimelineBox
+                initial="collapsed"
+                animate="open"
+                variants={ACCORDION_VARIANTS}
+                transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 1] }}
+              >
                 {
                   schedule.period.map((line, lineIndex) => (
                     <Text key={lineIndex.toString()} fontSize="14px" lineHeight={2}>
@@ -151,7 +159,7 @@ const NoticeBox = styled.div`
   margin-top: 36px;
 `;
 
-const TimelineBox = styled.div`
+const TimelineBox = styled(motion.div)`
   margin-top: 20px;
   padding: 20px;
   background: ${colorSet.gray6};
@@ -169,5 +177,7 @@ const Wrapper = styled.div`
   border: 1px solid ${colorSet.gray5};
   background: ${colorSet.white};
   border-radius: 4px;
+  top: 0;
+  position: sticky;
 `;
 

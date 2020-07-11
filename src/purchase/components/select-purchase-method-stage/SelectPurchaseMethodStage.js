@@ -3,8 +3,6 @@ import styled from "styled-components";
 import {colorSet, Text} from "common/Theme/Theme";
 import {
   FormLayout,
-  RadioWrapper,
-  ActiveRadio,
   Input,
   StageButton,
   FormTitle
@@ -130,7 +128,7 @@ export default function SelectPurchaseMethodStage(props) {
         <SectionTitle>
           결제 방식
         </SectionTitle>
-        <FormLayout style={{marginTop: "20px", borderColor: colorSet.green1}}>
+        <FormLayout style={{marginTop: "20px", borderColor: colorSet.green1, paddingTop: 0, paddingBottom:0,}} className="flex align-center">
           <Text
             fontSize="16px"
             lineHeihgt={1.13}

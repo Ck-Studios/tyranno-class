@@ -6,6 +6,8 @@ import {STAGE_SET} from "purchase/common/scheme/Scheme";
 
 export default function AccountPurchaseStage(props) {
   const [visibleIndex, updateVisibleIndex] = useState(0);
+  const [checkReceipt, setCheckReceipt] = useState(false);
+
   return (
     <>
       <ContainerLabel>
@@ -54,7 +56,10 @@ export default function AccountPurchaseStage(props) {
         </FormLayout>
 
         <div style={{marginTop: "50px"}} className="flex align-center">
-          <CheckBoxWrapper/>
+          <CheckBoxWrapper
+            onClick={() => setCheckReceipt(!checkReceipt)}
+            checked={checkReceipt}
+          />
           <Text
             fontSize="16px"
             lineHeight={1.13}
@@ -160,6 +165,7 @@ const CheckBoxWrapper = styled.div`
   height: 18px;
   margin-right: 10px;
   border: 1px solid ${colorSet.black};
+  background: ${({checked}) => checked ? colorSet.pointColor : "transparent"};
 `;
 
 const ContainerLabel = styled.div`

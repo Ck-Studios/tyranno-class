@@ -16,7 +16,6 @@ export default function MainContainer() {
         <Title>
           진행중인 클래스 <InlineText>3</InlineText>
         </Title>
-        {/*{ pathname: "/project", as: "/project", query: { defaultBehaviors: "resetFilter" } }*/}
         <div>
           {
             [1, 2, 3].map((item, index) => (

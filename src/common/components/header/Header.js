@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import {colorSet} from "common/Theme/Theme";
 import {useRouter} from "next/router";
+import {useSelector} from "react-redux";
 
 export default function Header({mode}) {
   const router = useRouter();
+  const user = useSelector(state => state.authentication.user);
+
   return (
     <HeaderWrapper className="flex justify-center items-center" mode={mode}>
       <div className="flex justify-between restrict-width">
@@ -31,9 +34,14 @@ export default function Header({mode}) {
               </>
           }
         </div>
-        <div className="header-right flex align-center" onClick={() => router.push("/login")}>
+        <div className="header-right flex align-center" onClick={user ? () => console.log("hi") : () => router.push("/login")}>
           <MenuFont>
-            로그인
+            {
+              user ?
+                user
+                :
+                "로그인"
+            }
           </MenuFont>
         </div>
       </div>

@@ -4,6 +4,8 @@ import {colorSet, Text, InlineText, RadiusButton} from "common/Theme/Theme";
 import {useRouter} from "next/router";
 import {StageButton} from "purchase/components/partials/Partials";
 import {STAGE_SET} from "purchase/common/scheme/Scheme";
+import {motion} from "framer-motion";
+import {ACCORDION_VARIANTS} from "common/animation/variants";
 
 const SCHEDULE_SET = [
   {
@@ -86,7 +88,12 @@ export default function SelectScheduleStage(props) {
               </div>
               {
                 visibleIndex === index &&
-                <TimelineBox>
+                <TimelineBox
+                  initial="collapsed"
+                  animate="open"
+                  variants={ACCORDION_VARIANTS}
+                  transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 1] }}
+                >
                   {
                     schedule.period.map((line, lineIndex) => (
                       <Text key={lineIndex.toString()} fontSize="14px" lineHeight={2}>
@@ -135,7 +142,7 @@ const ContentWrapper = styled.div`
   padding: 40px 24px 0 24px;
 `;
 
-const TimelineBox = styled.div`
+const TimelineBox = styled(motion.div)`
   margin-top: 20px;
   padding: 20px;
   background: ${colorSet.gray6};

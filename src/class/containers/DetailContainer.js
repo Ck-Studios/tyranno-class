@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Header from "common/components/header/Header";
 import Footer from "common/components/footer/Footer";
 import styled from "styled-components";
@@ -20,7 +20,7 @@ export default function DetailContainer() {
     <>
       <Header/>
       <BannerLayout/>
-      <ContentWrapper className="restrict-width m-auto flex">
+      <ContentWrapper className="restrict-width m-auto flex" style={{paddingBottom: "200px"}}>
         <ClassDetailWrapper>
           <TabBar className="flex">
             {
@@ -125,7 +125,7 @@ export default function DetailContainer() {
                 lineHeight={1.15}
               >
                 이런 걸 배워요
-             </Text>
+              </Text>
 
               <div className="temp" style={{width: "10px", height: "900px"}}>
 
@@ -133,14 +133,13 @@ export default function DetailContainer() {
             </CuriculumWrapper>
           </DescriptionWrapper>
         </ClassDetailWrapper>
-
         <ScheduleWrapper>
           <Schedule/>
         </ScheduleWrapper>
       </ContentWrapper>
       <Footer/>
     </>
-  )
+  );
 }
 
 const ScheduleWrapper = styled.div`
@@ -189,6 +188,7 @@ const TabBar = styled.div`
 const ClassDetailWrapper = styled.div`
   width: 820px;
   height: 100%;
+  margin-right: 20px;
   border: 1px solid #dddddd;
 `;
 
