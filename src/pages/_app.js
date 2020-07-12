@@ -14,7 +14,7 @@ const isProduction = process.env.NODE_ENV === "production";
 
 export default function App({Component, pageProps, router, status}) {
   const apolloClient = useApollo(pageProps?.initialApolloState);
-  const store = useStore(pageProps.initialReduxState);
+  const store = useStore(pageProps?.initialReduxState);
 
   useEffect(() => {
       if(window) {
