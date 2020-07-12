@@ -29,7 +29,9 @@ export default function MainContainer() {
                 index={index}
                 key={index.toString()}
               >
-                <LectureCard/>
+                <LectureCard
+                  path={`/static/images/thumbnail/thumbnail${index + 1}.jpg`}
+                />
               </ItemFrame>
             ))
           }

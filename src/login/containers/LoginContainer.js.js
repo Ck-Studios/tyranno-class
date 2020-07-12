@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import styled from "styled-components";
-import {colorSet} from "common/Theme/Theme";
+import {colorSet, FullImage} from "common/Theme/Theme";
 import {useSelector, useDispatch} from "react-redux";
 import {login} from "modules/authentication";
 import {useRouter} from "next/router";
@@ -64,7 +64,12 @@ export default function LoginContainer() {
           </NoticeBox>
         </MethodFrame>
       </LeftScreen>
-      <RightScreen/>
+      <RightScreen>
+        <FullImage
+          objectFit="cover"
+          src="/static/images/background/class.jpg"
+        />
+      </RightScreen>
     </ContainerWrapper>
   )
 }

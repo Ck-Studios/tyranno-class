@@ -1,9 +1,20 @@
+import {useState} from "react";
 import styled from "styled-components";
 
-export default function LectureCard() {
+export default function LectureCard(props) {
+  const [hovered, setHovered] = useState(false);
+
   return (
-    <Layout>
-      <ImageWrapper/>
+    <Layout
+      onMouseOver={() => setHovered(true)}
+      onMouseOut={() => setHovered(false)}
+    >
+      <ImageWrapper>
+        <Image
+          hovered={hovered}
+          src={props?.path}
+        />
+      </ImageWrapper>
       <ContentWrapper className="flex justify-between">
         <div className="wrapper-left column-flex justify-between">
           <LectureTitle>
@@ -75,9 +86,18 @@ const ImageWrapper = styled.div`
   background: #c1c1c1;
 `;
 
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: ${({hovered}) => hovered ? "scale(1.1)" : "scale(1.0)"};
+  transition: transform 0.5s;
+`;
+
 const Layout = styled.div`
   width: 100%;
   height: 600px;
   border-radius: 4px;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 `;

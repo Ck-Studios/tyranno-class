@@ -2,8 +2,13 @@ import {useState, useEffect} from "react";
 import Header from "common/components/header/Header";
 import Footer from "common/components/footer/Footer";
 import styled from "styled-components";
-import {CircleWrapper, colorSet, Text} from "common/Theme/Theme";
+import {CircleWrapper, colorSet, FullImage, Text} from "common/Theme/Theme";
 import Schedule from "class/components/schedule/Schedule";
+import {useRouter} from "next/router";
+import {class1} from "class/data/data";
+import Markdown from "common/components/Markdown";
+import {NotionRenderer} from "react-notion";
+import axios from "axios";
 
 const TAB_SET = [
   {display: "클래스 소개"},
@@ -13,13 +18,40 @@ const TAB_SET = [
   {display: "FAQ"},
 ];
 
+const URL_SET = {
+  // "1": "715d8db3a8c848da8eca3732233e41f4",
+  // "2": "715d8db3a8c848da8eca3732233e41f4",
+  "1": "4ab1d3c7e8d943df82d81e97a01d3857",
+  "2": "4ab1d3c7e8d943df82d81e97a01d3857",
+  "3": "4ab1d3c7e8d943df82d81e97a01d3857",
+};
+
 export default function DetailContainer() {
   const [selectedTabIndex, updateSelectedTabIndex] = useState(0);
+  const [detailData, setDetailData] = useState(null);
+  const router = useRouter();
 
-  return (
+  useEffect(async() => {
+    console.log("router::: ", router.query);
+    // axios.get("https://notion-api.splitbee.io/v1/page/" + URL_SET[router.query.id])
+    //   .then(res => {
+    //     setDetailData(res.data);
+    //   })
+    const data = await fetch(
+      `https://notion-api.splitbee.io/v1/page/${URL_SET[router.query.id]}`
+    ).then(res => res.json());
+    setDetailData(data);
+  }, []);
+
+  return detailData ? (
     <>
       <Header/>
-      <BannerLayout/>
+      <BannerLayout>
+        <FullImage
+          src={`/static/images/thumbnail/thumbnail${router.query?.id}.jpg`}
+          objectFit="cover"
+        />
+      </BannerLayout>
       <ContentWrapper className="restrict-width m-auto flex" style={{paddingBottom: "200px"}}>
         <ClassDetailWrapper>
           <TabBar className="flex">
@@ -127,8 +159,10 @@ export default function DetailContainer() {
                 이런 걸 배워요
               </Text>
 
-              <div className="temp" style={{width: "10px", height: "900px"}}>
-
+              <div className="temp" style={{width: "100%", minHeight: "900px"}}>
+                <NotionRenderer
+                  blockMap={detailData ? detailData : ""}
+                />
               </div>
             </CuriculumWrapper>
           </DescriptionWrapper>
@@ -139,7 +173,9 @@ export default function DetailContainer() {
       </ContentWrapper>
       <Footer/>
     </>
-  );
+  )
+    :
+    null
 }
 
 const ScheduleWrapper = styled.div`

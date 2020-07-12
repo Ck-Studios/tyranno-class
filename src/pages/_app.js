@@ -9,6 +9,8 @@ import {Provider} from "react-redux";
 import {useStore} from "client/redux/redux";
 import {initializeApollo, useApollo} from "client/apollo/client";
 import "styles/index.css";
+import "react-notion/src/styles.css";
+import "prismjs/themes/prism-tomorrow.css";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -25,6 +27,7 @@ export default function App({Component, pageProps, router, status}) {
   return (
     <>
       <Head>
+
       </Head>
       <Provider store={store}>
         <ApolloProvider client={apolloClient}>
