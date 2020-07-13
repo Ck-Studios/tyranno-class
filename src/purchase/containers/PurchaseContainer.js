@@ -10,7 +10,7 @@ import AccountPurchaseStage from "purchase/components/account-purchase-stage/Acc
 import PurchaseCompleteStage from "purchase/components/purchase-complete-stage/PurchaseCompleteStage";
 
 export default function PurchaseContainer() {
-  const [purchaseStage, setPurchaseStage] = useState("selectSchedule");
+  const [purchaseStage, setPurchaseStage] = useState(STAGE_SET.selectSchedule);
 
   const renderStage = () => {
     if (purchaseStage === STAGE_SET.selectSchedule) {

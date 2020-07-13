@@ -12,6 +12,7 @@ export const colorSet = {
   gray7: "#eeeeee",
   gray8: "#ebebeb",
   gray9: "#444444",
+  green: "#1eb482",
   green1: "#19c88c",
   blue: "#4095ea",
 

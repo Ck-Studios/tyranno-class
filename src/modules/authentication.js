@@ -5,10 +5,17 @@ const initialState = {
   user: null,
 };
 
+const _testUser = {
+  name: "ck",
+  profileImage: "/static/images/profile/profile2.jpg",
+  email: "info@synapsecorp.kr",
+  class: null,
+};
+
 export default function authentication(state=initialState, action) {
   switch(action.type) {
     case LOGIN:
-      return {...state, user: "test_user"};
+      return {...state, user: _testUser};
 
     case LOGOUT:
       return {...state, user: null};

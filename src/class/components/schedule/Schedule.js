@@ -44,7 +44,7 @@ const SCHEDULE_SET = [
   },
 ];
 
-export default function Schedule() {
+export default function Schedule(props) {
   const [visibleIndex, updateVisibleIndex] = useState(0);
   const router = useRouter();
   return (

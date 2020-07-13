@@ -18,11 +18,11 @@ const TAB_SET = [
   {display: "FAQ"},
 ];
 
+// https://www.notion.so/715d8db3a8c848da8eca3732233e41f4
+
 const URL_SET = {
-  // "1": "715d8db3a8c848da8eca3732233e41f4",
-  // "2": "715d8db3a8c848da8eca3732233e41f4",
-  "1": "4ab1d3c7e8d943df82d81e97a01d3857",
-  "2": "4ab1d3c7e8d943df82d81e97a01d3857",
+  "1": "715d8db3a8c848da8eca3732233e41f4",
+  "2": "715d8db3a8c848da8eca3732233e41f4",
   "3": "4ab1d3c7e8d943df82d81e97a01d3857",
 };
 
@@ -31,16 +31,19 @@ export default function DetailContainer() {
   const [detailData, setDetailData] = useState(null);
   const router = useRouter();
 
-  useEffect(async() => {
-    console.log("router::: ", router.query);
-    // axios.get("https://notion-api.splitbee.io/v1/page/" + URL_SET[router.query.id])
-    //   .then(res => {
-    //     setDetailData(res.data);
-    //   })
-    const data = await fetch(
-      `https://notion-api.splitbee.io/v1/page/${URL_SET[router.query.id]}`
-    ).then(res => res.json());
-    setDetailData(data);
+  async function fetchDetailData() {
+    try {
+      const _data = await fetch(
+        `https://notion-api.splitbee.io/v1/page/${URL_SET[router.query.id]}`
+      ).then(res => res.json());
+      await setDetailData({blockMap: _data})
+    } catch(err) {
+      console.log("err", err);
+    }
+  }
+
+  useEffect(() => {
+    fetchDetailData();
   }, []);
 
   return detailData ? (
@@ -161,7 +164,7 @@ export default function DetailContainer() {
 
               <div className="temp" style={{width: "100%", minHeight: "900px"}}>
                 <NotionRenderer
-                  blockMap={detailData ? detailData : ""}
+                  blockMap={detailData.blockMap}
                 />
               </div>
             </CuriculumWrapper>
