@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colorSet, RadiusButton, Text} from "common/Theme/Theme";
+import {colorSet, RadiusButton, Text} from "common/theme/Theme";
 
 export const StageButton = styled(RadiusButton)`
   border-radius: 27px;

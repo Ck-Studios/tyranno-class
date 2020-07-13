@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colorSet, FullImage, Text} from "common/Theme/Theme";
+import {colorSet, FullImage, Text} from "common/theme/Theme";
 
 export default function LightFooter() {
   return (

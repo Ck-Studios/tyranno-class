@@ -1,4 +1,4 @@
-import {colorSet, Text} from "common/Theme/Theme";
+import {colorSet, Text} from "common/theme/Theme";
 import styled from "styled-components";
 
 export default function PurchaseCompleteStage() {

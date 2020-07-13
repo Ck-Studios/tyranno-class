@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colorSet} from "common/Theme/Theme";
+import {colorSet} from "common/theme/Theme";
 
 export default function Footer() {
   return (

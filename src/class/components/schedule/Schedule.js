@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {useState} from "react";
-import {colorSet, Text, InlineText} from "common/Theme/Theme";
+import {colorSet, Text, InlineText} from "common/theme/Theme";
 import {useRouter} from "next/router";
 import {ACCORDION_VARIANTS} from "common/animation/variants";
 import {AnimatePresence, motion} from "framer-motion";

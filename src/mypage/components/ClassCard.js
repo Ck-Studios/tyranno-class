@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {colorSet, Text} from "common/Theme/Theme";
+import {colorSet, Text} from "common/theme/Theme";
 
 export default function ClassCard(props) {
   return (

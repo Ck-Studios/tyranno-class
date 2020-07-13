@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import Header from "common/components/header/Header";
 import Footer from "common/components/footer/Footer";
 import styled from "styled-components";
-import {CircleWrapper, colorSet, FullImage, Text} from "common/Theme/Theme";
+import {CircleWrapper, colorSet, FullImage, Text} from "common/theme/Theme";
 import Schedule from "class/components/schedule/Schedule";
 import {useRouter} from "next/router";
 import {class1} from "class/data/data";

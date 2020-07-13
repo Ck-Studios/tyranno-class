@@ -2,7 +2,7 @@ import {useState} from "react";
 import styled from "styled-components";
 import SelectScheduleStage from "purchase/components/select-schedule-stage/SelectScheduleStage";
 import Header from "common/components/header/Header";
-import {colorSet} from "common/Theme/Theme";
+import {colorSet} from "common/theme/Theme";
 import LightFooter from "common/components/footer/LightFooter";
 import SelectPurchaseMethodStage from "purchase/components/select-purchase-method-stage/SelectPurchaseMethodStage";
 import {STAGE_SET} from "purchase/common/scheme/Scheme";

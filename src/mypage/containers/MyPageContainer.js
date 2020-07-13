@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Header from "common/components/header/Header";
 import {useSelector} from "react-redux";
-import {colorSet, FullImage, Text} from "common/Theme/Theme";
+import {colorSet, FullImage, Text} from "common/theme/Theme";
 import ClassCard from "mypage/components/ClassCard";
 import Footer from "common/components/footer/Footer";
 

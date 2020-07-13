@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {useState} from "react";
-import {colorSet, Text, InlineText, RadiusButton} from "common/Theme/Theme";
+import {colorSet, Text, InlineText, RadiusButton} from "common/theme/Theme";
 import {useRouter} from "next/router";
 import {StageButton} from "purchase/components/partials/Partials";
 import {STAGE_SET} from "purchase/common/scheme/Scheme";

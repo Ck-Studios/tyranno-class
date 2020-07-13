@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import styled from "styled-components";
-import {colorSet, FullImage} from "common/Theme/Theme";
+import {colorSet, FullImage} from "common/theme/Theme";
 import {useSelector, useDispatch} from "react-redux";
 import {login} from "modules/authentication";
 import {useRouter} from "next/router";

@@ -1,6 +1,6 @@
 import {useState} from "react";
 import styled from "styled-components";
-import {colorSet, Text} from "common/Theme/Theme";
+import {colorSet, Text} from "common/theme/Theme";
 import {
   FormLayout,
   Input,
