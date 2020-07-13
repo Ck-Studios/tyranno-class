@@ -1,16 +1,20 @@
-import {useState} from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import {colorSet, Text} from "common/theme/Theme";
+import { colorSet, Text } from "common/theme/Theme";
 import {
   FormLayout,
   Input,
   StageButton,
-  FormTitle
+  FormTitle,
 } from "purchase/components/partials/Partials";
-import {STAGE_SET} from "purchase/common/scheme/Scheme";
+import { STAGE_SET } from "purchase/common/scheme/Scheme";
+import { useForm } from "react-hook-form";
 
 export default function SelectPurchaseMethodStage(props) {
   const [visibleIndex, updateVisibleIndex] = useState(0);
+  const { register, errors } = useForm({
+    mode: "onChange",
+  });
   return (
     <div>
       <ContainerLabel>
@@ -18,32 +22,19 @@ export default function SelectPurchaseMethodStage(props) {
           fontSize="24px"
           color={colorSet.white}
           fontWeight={500}
-          lineHeight={1.13}
-        >
+          lineHeight={1.13}>
           결제하기
         </Text>
       </ContainerLabel>
 
-
       <OrderInfoWrapper>
-        <SectionTitle
-          style={{marginBottom: "10px"}}
-        >
-          주문 정보
-        </SectionTitle>
+        <SectionTitle style={{ marginBottom: "10px" }}>주문 정보</SectionTitle>
 
         <div className="flex">
-          <ClassImageWrapper/>
+          <ClassImageWrapper />
           <div>
-            <Text
-              lineHeight={1.13}
-            >
-              HTML/CSS로 랜딩 페이지 만들기
-            </Text>
-            <Text
-              style={{marginTop: "8px"}}
-              lineHeight={1.13}
-            >
+            <Text lineHeight={1.13}>HTML/CSS로 랜딩 페이지 만들기</Text>
+            <Text style={{ marginTop: "8px" }} lineHeight={1.13}>
               07.18(토) 시작
             </Text>
           </div>
@@ -51,89 +42,100 @@ export default function SelectPurchaseMethodStage(props) {
       </OrderInfoWrapper>
 
       <CustomerInfoWrapper>
-        <SectionTitle
-          style={{marginBottom: "20px"}}
-        >
+        <SectionTitle style={{ marginBottom: "20px" }}>
           연락처 정보
         </SectionTitle>
-        <FormTitle>
-          이름
-        </FormTitle>
-        <FormLayout style={{borderRadius: "4px", paddingTop: 0, paddingBottom: 0,}}>
-          <Input/>
+        <FormTitle>이름</FormTitle>
+        <FormLayout
+          style={{
+            borderRadius: "4px",
+            paddingTop: 0,
+            paddingBottom: 0,
+          }}
+          error={errors.userName}>
+          <Input
+            name="userName"
+            placeholder="이름"
+            type="text"
+            ref={register({
+              required: "필수 입력",
+              minLength: {
+                value: 2,
+                message: "두 자리 이상 입력해주세요.",
+              },
+              maxLength: {
+                value: 17,
+                message: "17자리 이상은 입력할 수 없습니다.",
+              },
+            })}
+          />
         </FormLayout>
-        <FormTitle style={{marginTop: "20px"}}>
-          휴대폰 번호
-        </FormTitle>
-        <FormLayout style={{borderRadius: "4px", paddingTop: 0, paddingBottom: 0,}}>
-          <Input placeholder="숫자만 입력해주세요"/>
+        <FormTitle style={{ marginTop: "20px" }}>휴대폰 번호</FormTitle>
+        <FormLayout
+          style={{
+            borderRadius: "4px",
+            paddingTop: 0,
+            paddingBottom: 0,
+          }}
+          error={errors.cellPhone}>
+          <Input
+            name="cellPhone"
+            placeholder="숫자만 입력해주세요"
+            type="tel"
+            ref={register({
+              required: "필수 입력",
+              pattern: {
+                value: /^01(0|1|[6-9])(\d{3}|\d{4})(\d{4})$/,
+                message: "숫자만을 사용한 올바른 번호를 입력해주세요.",
+              },
+            })}
+          />
         </FormLayout>
       </CustomerInfoWrapper>
 
       <PriceInfoWrapper>
-        <SectionTitle>
-          결제 금액
-        </SectionTitle>
-        <div className="flex justify-between" style={{marginTop: 24}}>
-          <Text
-            fontSize="14px"
-            color={colorSet.gray9}
-            lineHeight={1.14}
-          >
+        <SectionTitle>결제 금액</SectionTitle>
+        <div className="flex justify-between" style={{ marginTop: 24 }}>
+          <Text fontSize="14px" color={colorSet.gray9} lineHeight={1.14}>
             총 금액
           </Text>
-          <Text
-            fontSize="14px"
-            color={colorSet.gray9}
-            lineHeight={1.14}
-          >
+          <Text fontSize="14px" color={colorSet.gray9} lineHeight={1.14}>
             450,000원
           </Text>
         </div>
-        <div className="flex justify-between" style={{marginTop: 10}}>
-          <Text
-            fontSize="14px"
-            color={colorSet.gray9}
-            lineHeight={1.14}
-          >
+        <div className="flex justify-between" style={{ marginTop: 10 }}>
+          <Text fontSize="14px" color={colorSet.gray9} lineHeight={1.14}>
             할인 금액
           </Text>
-          <Text
-            fontSize="14px"
-            color={colorSet.gray9}
-            lineHeight={1.14}
-          >
+          <Text fontSize="14px" color={colorSet.gray9} lineHeight={1.14}>
             150,000원
           </Text>
         </div>
-        <div className="flex justify-between" style={{marginTop: 20}}>
-          <Text
-            fontSize="14px"
-            lineHeight={1.14}
-          >
+        <div className="flex justify-between" style={{ marginTop: 20 }}>
+          <Text fontSize="14px" lineHeight={1.14}>
             최종 가격
           </Text>
           <Text
             fontSize="18px"
             fontWeight="bold"
             color={colorSet.gray9}
-            lineHeight={1.14}
-          >
+            lineHeight={1.14}>
             300,000원
           </Text>
         </div>
       </PriceInfoWrapper>
 
       <PaymentSelectionWrapper>
-        <SectionTitle>
-          결제 방식
-        </SectionTitle>
-        <FormLayout style={{marginTop: "20px", borderColor: colorSet.green1, paddingTop: 0, paddingBottom:0,}} className="flex align-center">
-          <Text
-            fontSize="16px"
-            lineHeihgt={1.13}
-            color={colorSet.green1}
-          >
+        <SectionTitle>결제 방식</SectionTitle>
+        <FormLayout
+          style={{
+            marginTop: "20px",
+            borderColor: colorSet.green1,
+            paddingTop: 0,
+            paddingBottom: 0,
+          }}
+          className="flex align-center">
+          <Text fontSize="16px" lineHeihgt={1.13} color={colorSet.green1}>
             무통장 입금
           </Text>
         </FormLayout>
@@ -141,13 +143,12 @@ export default function SelectPurchaseMethodStage(props) {
 
       <div className="flex justify-center">
         <StageButton
-          onClick={() => props.moveNextStage(STAGE_SET.accountPurchase)}
-        >
+          onClick={() => props.moveNextStage(STAGE_SET.accountPurchase)}>
           다음 단계로
         </StageButton>
       </div>
     </div>
-  )
+  );
 }
 
 const PaymentSelectionWrapper = styled.div`
@@ -190,4 +191,3 @@ const ContainerLabel = styled.div`
   padding: 28px 24px;
   background: ${colorSet.black};
 `;
-
