@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import Header from "common/components/header/Header";
 import Footer from "common/components/footer/Footer";
 import styled from "styled-components";
-import {CircleWrapper, colorSet, FullImage, Text} from "common/theme/Theme";
+import {breakPoints, CircleWrapper, colorSet, FullImage, Text} from "common/theme/Theme";
 import Schedule from "class/components/schedule/Schedule";
 import {useRouter} from "next/router";
 import {class1} from "class/data/data";
@@ -55,9 +55,27 @@ export default function DetailContainer() {
           objectFit="cover"
         />
       </BannerLayout>
-      <ContentWrapper className="restrict-width m-auto flex" style={{paddingBottom: "200px"}}>
+      <ContentWrapper className="restrict-width m-auto flex mobile:column-flex" style={{paddingBottom: "200px"}}>
         <ClassDetailWrapper>
-          <TabBar className="flex">
+          <LectureTitle className="mobile">
+            HTML/CSS로 랜딩 페이지 만들기
+          </LectureTitle>
+          <TeacherProfileWrapper
+            className="flex align-center mobile"
+          >
+            <div
+              className="circle-wrapper"
+            />
+            <div style={{marginLeft: 14}} className="flex">
+              <Text lineHeight={1.71}>
+                분야
+              </Text>
+              <Text fontSize="14px" lineHeight={1.71}>
+                분야설명
+              </Text>
+            </div>
+          </TeacherProfileWrapper>
+          <TabBar className="flex mobile:bg-pink-400 desktop:bg-gray-2">
             {
               TAB_SET.map((tab, index) => (
                 <Tab
@@ -74,11 +92,11 @@ export default function DetailContainer() {
             }
           </TabBar>
           <DescriptionWrapper>
-            <LectureTitle>
+            <LectureTitle className="desktop">
               HTML/CSS로 랜딩 페이지 만들기
             </LectureTitle>
             <TeacherProfileWrapper
-              className="flex align-center"
+              className="flex align-center desktop"
             >
               <CircleWrapper
                 width="64px"
@@ -198,16 +216,38 @@ const LectureInfoWrapper = styled.div`
 const TeacherProfileWrapper = styled.div`
   margin-top: 25px;
   margin-bottom: 33px;
+  
+  .circle-wrapper {
+    background: ${colorSet.gray1};
+  }
+  
+  ${breakPoints.mobile} {
+    .circle-wrapper {
+      width: 25px;
+      height: 25px;
+    }
+  }
 `;
 
 const LectureTitle = styled.h1`
   font-size: 36px;
   line-height: 1.14;
   color: ${colorSet.black};
+  ${breakPoints.mobile} {
+    font-size: 22px;
+  }
 `;
 
 const DescriptionWrapper = styled.div`
   padding: 55px 40px;
+  .desktop: {
+    display: block;
+  }
+  ${breakPoints.mobile} {
+    .desktop {
+      display: none;
+    }
+  }
 `;
 
 const TabName = styled.p`
@@ -229,6 +269,14 @@ const ClassDetailWrapper = styled.div`
   height: 100%;
   margin-right: 20px;
   border: 1px solid #dddddd;
+  .mobile {
+    display: none;
+  }
+  ${breakPoints.mobile} {
+    .mobile {
+      display: flex;
+    }
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -239,4 +287,7 @@ const BannerLayout = styled.div`
   width: 100%;
   height: 500px;
   background: ${colorSet.black};
+  ${breakPoints.mobile} {
+    height: 200px;
+  }
 `;

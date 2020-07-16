@@ -1,6 +1,6 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+
 
 .flex-wrap {
     flex-wrap: wrap;
@@ -64,3 +64,5 @@
 .overflow-hidden {
     overflow: hidden;
 }
+
+@tailwind utilities;

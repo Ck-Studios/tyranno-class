@@ -26,6 +26,7 @@ export default function LectureCard(props) {
             <ProfileImageWrapper/>
             <CategoryDescriptionTextBox>
               <CategoryTitle>분야</CategoryTitle>
+              <CategoryTitle>&nbsp;|&nbsp;</CategoryTitle>
               <CategorySubtitle>분야 설명</CategorySubtitle>
             </CategoryDescriptionTextBox>
           </ProfileWrapper>
@@ -60,11 +61,18 @@ const CategoryDescriptionTextBox = styled.div`
 
 const CategoryTitle = styled.p`
   font-size: 16px;
+  ${breakPoints.mobile} {
+    font-size: 11px;
+  }
 `;
 
 const CategorySubtitle = styled.p`
   font-size: 14px;
   margin-top: 4.5px;
+  ${breakPoints.mobile} {
+    margin: 0;
+    font-size: 11px;
+  }
 `;
 
 const ProfileWrapper = styled.div`
