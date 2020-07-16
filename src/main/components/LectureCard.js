@@ -1,5 +1,6 @@
 import {useState} from "react";
 import styled from "styled-components";
+import {breakPoints} from "common/theme/Theme";
 
 export default function LectureCard(props) {
   const [hovered, setHovered] = useState(false);
@@ -18,7 +19,7 @@ export default function LectureCard(props) {
       <ContentWrapper className="flex justify-between">
         <div className="wrapper-left column-flex justify-between">
           <LectureTitle>
-            HTML/CSS로 랜딩 페이지 만들기
+            HTML/CSS로 랜딩 페이지 직접 만들기
           </LectureTitle>
 
           <ProfileWrapper className="flex align-center">
@@ -44,10 +45,17 @@ const StartDateText = styled.p`
   font-size: 36px;
   line-height: 1.14;
   color: #0ad28c;
+  ${breakPoints.mobile} {
+    font-size: 18px;
+  }
 `;
 
 const CategoryDescriptionTextBox = styled.div`
   margin-left: 16px;
+  ${breakPoints.mobile} {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const CategoryTitle = styled.p`
@@ -61,6 +69,9 @@ const CategorySubtitle = styled.p`
 
 const ProfileWrapper = styled.div`
   margin-top: 43px;
+  ${breakPoints.mobile} {
+    margin-top: 13.5px;
+  }
 `;
 
 const ProfileImageWrapper = styled.div`
@@ -68,22 +79,39 @@ const ProfileImageWrapper = styled.div`
   height: 44px;
   border-radius: 50%;
   background: #d1d1d1;
+  
+  ${breakPoints.mobile} {
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 const LectureTitle = styled.p`
   font-size: 36px;
   line-height: 1.14;
   color: #000000;
+  
+  ${breakPoints.mobile} {
+    width: 177px;
+    font-size: 18px;
+    font-weight: bold;    
+  }
 `;
 
 const ContentWrapper = styled.div`
   padding: 46.5px 38px;
+  ${breakPoints.mobile} {
+    padding: 21px 15px 20px 20px;
+  }
 `;
 
 const ImageWrapper = styled.div`
   width: 100%;
   height: 380px;
   background: #c1c1c1;
+  ${breakPoints.mobile} {
+    height: 190px;
+  }
 `;
 
 const Image = styled.img`
@@ -100,4 +128,7 @@ const Layout = styled.div`
   border-radius: 4px;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.05);
   overflow: hidden;
+  ${breakPoints.mobile} {
+    height: 300px;
+  }
 `;

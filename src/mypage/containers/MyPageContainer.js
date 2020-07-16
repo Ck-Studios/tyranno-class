@@ -4,72 +4,77 @@ import {useSelector} from "react-redux";
 import {colorSet, FullImage, Text} from "common/theme/Theme";
 import ClassCard from "mypage/components/ClassCard";
 import Footer from "common/components/footer/Footer";
+import {useRouter} from "next/router";
 
 export default function MyPageContainer(props) {
+  const router = useRouter();
   const user = useSelector(state => state.authentication.user);
   return (
-    <>
-      <div style={{borderBottom: `1px solid ${colorSet.gray5}`}}>
-      <Header/>
+    <div className="mypage-container-wrapper column-flex justify-between min-h-screen">
+      <div>
+        <div style={{borderBottom: `1px solid ${colorSet.gray5}`}}>
+          <Header/>
+        </div>
+        <ContentWrapper
+          className="restrict-width row-flex"
+        >
+          <SideMenuFrame className="column-flex justify-center align-center">
+            <div className="circle-wrapper overflow-hidden" style={{width: 64, height: 64, background: colorSet.gray1}}>
+              <FullImage
+                src={user?.profileImage}
+              />
+            </div>
+            <Text
+              style={{marginTop: 20, marginBottom: 10}}
+              fontWeight="bold"
+              fontSize="18px"
+            >
+              {user?.name}
+            </Text>
+            <Text
+              style={{marginBottom: 10}}
+              fontSize="14px"
+              color={colorSet.gray9}
+            >
+              {user?.email}
+            </Text>
+
+            <div className="circle-wrapper overflow-hidden"
+                 style={{width: 24, height: 24, marginBottom: 74, background: colorSet.gray1}}/>
+
+            <MenuText>
+              내 클래스
+            </MenuText>
+            <MenuText style={{margin: "30px 0"}} onClick={() => router.push("/myinfo")}>
+              내 정보관리
+            </MenuText>
+            <MenuText>
+              주문내역
+            </MenuText>
+          </SideMenuFrame>
+          <MyClassFrame>
+            <Text
+              fontSize="24px"
+              fontWeight="bold"
+              style={{marginBottom: 20}}
+            >
+              내 클래스
+            </Text>
+
+            <div className="row-flex flex-wrap justify-between">
+              {
+                [1, 2].map((item, index) => (
+                  <ItemFrame key={index.toString()} index={index}>
+                    <ClassCard/>
+                  </ItemFrame>
+                ))
+              }
+            </div>
+          </MyClassFrame>
+        </ContentWrapper>
       </div>
-      <ContentWrapper
-        className="restrict-width row-flex"
-      >
-        <SideMenuFrame className="column-flex justify-center align-center">
-          <div className="circle-wrapper overflow-hidden" style={{width: 64, height: 64, background: colorSet.gray1}}>
-            <FullImage
-              src={user?.profileImage}
-            />
-          </div>
-          <Text
-            style={{marginTop: 20, marginBottom: 10}}
-            fontWeight="bold"
-            fontSize="18px"
-          >
-            {user?.name}
-          </Text>
-          <Text
-            style={{marginBottom: 10}}
-            fontSize="14px"
-            color={colorSet.gray9}
-          >
-            {user?.email}
-          </Text>
-
-          <div className="circle-wrapper overflow-hidden" style={{width: 24, height: 24, marginBottom: 74, background: colorSet.gray1}}/>
-
-          <MenuText>
-            내 클래스
-          </MenuText>
-          <MenuText style={{margin: "30px 0"}}>
-            내 정보관리
-          </MenuText>
-          <MenuText>
-            주문내역
-          </MenuText>
-        </SideMenuFrame>
-        <MyClassFrame>
-          <Text
-            fontSize="24px"
-            fontWeight="bold"
-            style={{marginBottom: 20}}
-          >
-            내 클래스
-          </Text>
-
-          <div className="row-flex flex-wrap justify-between">
-            {
-              [1,2].map((item, index) => (
-                <ItemFrame key={index.toString()} index={index}>
-                  <ClassCard/>
-                </ItemFrame>
-              ))
-            }
-          </div>
-        </MyClassFrame>
-      </ContentWrapper>
       <Footer/>
-    </>
+    </div>
   )
 }
 

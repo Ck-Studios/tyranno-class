@@ -33,7 +33,7 @@ export default function PurchaseContainer() {
   };
 
   return (
-    <div style={{background: colorSet.gray6}} className="min-h-screen">
+    <div style={{background: colorSet.gray6}} className="h-full">
       <div className="restrict-width-640 min-h-screen m-auto column-flex justify-between"
            style={{background: colorSet.white}}>
         <div style={{paddingBottom: "42px"}}>

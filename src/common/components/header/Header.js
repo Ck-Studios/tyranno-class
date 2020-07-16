@@ -1,6 +1,6 @@
 import {useState} from "react";
 import styled from "styled-components";
-import {colorSet, FullImage, InlineText, Text} from "common/theme/Theme";
+import {breakPoints, colorSet, FullImage, InlineText, Text} from "common/theme/Theme";
 import {useRouter} from "next/router";
 import {useSelector, useDispatch} from "react-redux";
 import {logout} from "modules/authentication";
@@ -22,7 +22,7 @@ export default function Header({mode}) {
           </LogoFrame>
           {
             mode !== "simple" &&
-            <>
+            <div className="header-menu-wrapper flex">
               <MenuFont
                 marginLeft={62}
                 underline
@@ -35,7 +35,7 @@ export default function Header({mode}) {
               >
                 온라인 클래스
               </MenuFont>
-            </>
+            </div>
           }
         </div>
         <div className="header-right flex align-center"
@@ -130,6 +130,9 @@ const MenuFont = styled.p`
   line-height: 1.13;
   text-decoration: ${({underline}) => underline ? "underline" : "none"};
   text-underline-position: under;
+  ${breakPoints.mobile} {
+    font-size: 13px;
+  }
 `;
 
 const Image = styled.img`
@@ -140,7 +143,11 @@ const Image = styled.img`
 
 const LogoFrame = styled.div`
   width: 198px;
-  height: 50px;  
+  height: 50px;
+  ${breakPoints.mobile} {
+    width: 115px;
+    height: 58px;
+  } 
 `;
 
 const HeaderWrapper = styled.div`
@@ -149,4 +156,11 @@ const HeaderWrapper = styled.div`
   height: ${({mode}) => mode === "simple" ? 80 : 90}px;
   padding: ${({mode}) => mode === "simple" ? "0 24px" : "initial"};
   background: ${colorSet.white};
+  ${breakPoints.mobile} {
+    padding: 0 16px;
+    height: 50px;
+    .header-menu-wrapper {
+      display: none;
+    }
+  }
 `;

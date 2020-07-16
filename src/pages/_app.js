@@ -47,6 +47,7 @@ export default function App({Component, pageProps, router, status}) {
             html {
                 box-sizing: border-box;
                 font-size: 16px;
+                height: 100%;
             }
             
             body {
