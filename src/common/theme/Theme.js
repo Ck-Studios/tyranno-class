@@ -117,6 +117,17 @@ export const ActionButton = styled(RadiusButton)`
   font-weight: bold;
 `;
 
+export const GradientActionButton__Mobile = styled(RadiusButton)`
+  height: 50px;
+  width: 100%;
+  background: ${colorSet.pointColor};
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  ${breakPoints.mobile} {
+    font-size: 14px;
+  }
+`;
+
 export const CheckBoxWrapper = styled.div`
   width: ${({size}) => size || "18px"};
   height: ${({size}) => size || "18px"};

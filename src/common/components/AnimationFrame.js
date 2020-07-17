@@ -8,10 +8,8 @@ export default function AnimationFrame(props) {
     <motion.div
       className="animation-frame"
       style={{
-        display: "flex",
-        flexDirection: "column",
-        flex: noFlexShrink ? "auto auto auto" : 1,
         width: "100%",
+        height: "100%",
         background: background || "transparent",
       }}
       initial="initial"

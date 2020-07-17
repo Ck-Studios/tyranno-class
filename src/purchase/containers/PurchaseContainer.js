@@ -2,7 +2,7 @@ import {useState} from "react";
 import styled from "styled-components";
 import SelectScheduleStage from "purchase/components/select-schedule-stage/SelectScheduleStage";
 import Header from "common/components/header/Header";
-import {colorSet} from "common/theme/Theme";
+import {breakPoints, colorSet} from "common/theme/Theme";
 import LightFooter from "common/components/footer/LightFooter";
 import SelectPurchaseMethodStage from "purchase/components/select-purchase-method-stage/SelectPurchaseMethodStage";
 import {STAGE_SET} from "purchase/common/scheme/Scheme";
@@ -34,16 +34,31 @@ export default function PurchaseContainer() {
 
   return (
     <div style={{background: colorSet.gray6}} className="h-full">
-      <div className="restrict-width-640 min-h-screen m-auto column-flex justify-between"
+      <div className="restrict-max-width-640 h-full m-auto column-flex justify-between mobile:w-full"
            style={{background: colorSet.white}}>
-        <div style={{paddingBottom: "42px"}}>
+        <StageFrame>
           <Header mode="simple"/>
           {renderStage()}
-        </div>
-        <div style={{padding: "0 0 53px 0"}}>
+        </StageFrame>
+        <FooterFrame>
           <LightFooter/>
-        </div>
+        </FooterFrame>
       </div>
     </div>
   )
 }
+
+const FooterFrame = styled.div`
+  padding-bottom: 53px;
+  
+  ${breakPoints.mobile} {
+    padding-bottom: 0;
+  }
+`;
+
+const StageFrame = styled.div`
+  padding-bottom: 42px;
+  ${breakPoints.mobile} {
+    padding-bottom: 55px;
+  }
+`;

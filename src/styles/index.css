@@ -1,6 +1,6 @@
 @tailwind base;
 @tailwind components;
-
+@tailwind utilities;
 
 .flex-wrap {
     flex-wrap: wrap;
@@ -20,6 +20,10 @@
 
 .restrict-width-640 {
     width: 640px;
+}
+
+.restrict-max-width-640 {
+     width: 640px;
 }
 
 .restrict-max-width {
@@ -65,4 +69,52 @@
     overflow: hidden;
 }
 
-@tailwind utilities;
+.text-12 {
+    font-size: 12px;
+}
+
+.text-13 {
+    font-size: 13px;
+}
+
+.text-14 {
+    font-size: 14px;
+}
+.text-15 {
+    font-size: 15px;
+}
+.text-16 {
+    font-size: 16px;
+}
+.text-17 {
+    font-size: 17px;
+}
+
+.text-18 {
+    font-size: 18px;
+}
+
+.text-19 {
+    font-size: 19px;
+}
+
+.text-20 {
+    font-size: 20px;
+}
+
+.text-22 {
+    font-size: 22px;
+}
+
+.text-24 {
+    font-size: 24px;
+}
+
+.text-26 {
+    font-size: 26px;
+}
+
+.text-28 {
+    font-size: 28px;
+}
+

@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { colorSet, RadiusButton } from "common/theme/Theme";
+import {breakPoints, colorSet, RadiusButton} from "common/theme/Theme";
 
 export const StageButton = styled(RadiusButton)`
   border-radius: 27px;
@@ -8,12 +8,23 @@ export const StageButton = styled(RadiusButton)`
   height: 54px;
   font-size: 18px;
   font-weight: bold;
+  ${breakPoints.mobile} {
+    font-size: 15px;
+    width: 100%;
+    height: 46px;
+  }
 `;
 
 export const FormTitle = styled.p`
   font-size: 14px;
   line-height: 1.14;
   margin-bottom: 6px;
+  
+  ${breakPoints.mobile} {
+    font-size: 13px;
+    line-height: 1.15;
+    margin-bottom: 7px;
+  }
 `;
 
 export const Input = styled.input`
@@ -31,9 +42,6 @@ const FormInputLayout = styled.div`
   height: 48px;
   border: 1px solid ${({ borderColor }) => borderColor || colorSet.gray1};
   padding: 16px 15px;
-  &:hover {
-    border-color: ${colorSet.gray9};
-  }
   &:focus-within {
     border-color: ${colorSet.green1};
   }

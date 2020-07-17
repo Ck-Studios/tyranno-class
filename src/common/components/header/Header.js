@@ -44,42 +44,44 @@ export default function Header({mode}) {
             user ?
               <>
                 <div className="row-flex" onClick={() => toggleProfileMenu(!showProfileMenu)}>
-                  <div
+                  <ProfileWrapper
                     className="circle-wrapper overflow-hidden"
-                    style={{width: 40, height: 40, background: colorSet.gray1}}
                   >
                     <FullImage
                       objectFit="cover"
-                      src="/static/images/profile/profile2.jpg"
+                      src={user?.profileImage}
                     />
-                  </div>
+                  </ProfileWrapper>
                 </div>
                 {
                   showProfileMenu &&
                   <ProfileMenuFrame>
                     <div className="row-flex" onClick={() => router.push("/mypage")}>
-                      <div
+                      <ProfileWrapper
                         className="circle-wrapper overflow-hidden"
-                        style={{width: 40, height: 40, background: colorSet.gray1}}
                       >
                         <FullImage
                           objectFit="cover"
-                          src="/static/images/profile/profile2.jpg"
+                          src={user?.profileImage}
                         />
-                      </div>
+                      </ProfileWrapper>
                       <div style={{marginLeft: 12}}>
-                        <Text
-                          lineHeight={1.57}
-                          fontSize="14px"
+                        <p
+                          className="text-14 mobile:text-12"
+                          style={{lineHeight: 1.57}}
                         >
                           {user.name}<br/>
-                          <InlineText
-                            color={colorSet.green1}
-                            fontSize="14px"
+                          <span
+                            className="text-14 mobile:text-12 text-green-1 mobile:hidden"
                           >
                             마이페이지 >
-                          </InlineText>
-                        </Text>
+                          </span>
+                        </p>
+                        <p
+                          className="text-14 mobile:text-12 text-green-1 desktop:hidden"
+                        >
+                          마이페이지 >
+                        </p>
                       </div>
                     </div>
                     <Divider/>
@@ -104,11 +106,27 @@ export default function Header({mode}) {
   )
 }
 
+// style={{width: 40, height: 40, background: colorSet.gray1}}
+
+const ProfileWrapper = styled.div`
+  width: 40px;
+  height: 40px;
+  background: ${colorSet.gray1};
+  
+  ${breakPoints.mobile} {
+    width: 32px;
+    height: 32px;
+  }
+`;
+
 const Divider = styled.div`
   width: 100%;
   height: 1px;
   background: ${colorSet.gray1};
   margin: 21.5px 0;
+  ${breakPoints.mobile} {
+    margin: 20px 0 17px 0;
+  }
 `;
 
 const ProfileMenuFrame = styled.div`
@@ -122,6 +140,13 @@ const ProfileMenuFrame = styled.div`
   position: absolute;
   top: 150%;
   right: 0;
+  ${breakPoints.mobile} {
+    width: 170px;
+    border-radius: 5px;
+    top: 110%;
+    padding: 20px 20px 18px 20px;
+  }
+  
 `;
 
 const MenuFont = styled.p`

@@ -55,6 +55,10 @@ export default function App({Component, pageProps, router, status}) {
                 height: 100%;
             }
             
+            #__next {
+              height: 100%;
+            }
+            
             button:focus, input:focus {
                outline: 0;
             }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {useState} from "react";
-import {colorSet, Text, InlineText} from "common/theme/Theme";
+import {colorSet, Text, InlineText, breakPoints} from "common/theme/Theme";
 import {useRouter} from "next/router";
 import {ACCORDION_VARIANTS} from "common/animation/variants";
 import {AnimatePresence, motion} from "framer-motion";
@@ -50,6 +50,7 @@ export default function Schedule(props) {
   return (
     <Wrapper>
       <Text
+        className="mobile:hidden"
         fontSize="16px"
         fontWeight="bold"
         lineHeight={1.5}
@@ -64,9 +65,9 @@ export default function Schedule(props) {
             onClick={() => updateVisibleIndex(index)}
             key={index.toString()}
           >
-            <Text fontSize="16px" lineHeight={1.5} fontWeight="bold">
+            <ScheduleTitle>
               {schedule.title}
-            </Text>
+            </ScheduleTitle>
 
             {
               visibleIndex === index &&
@@ -78,12 +79,12 @@ export default function Schedule(props) {
               >
                 {
                   schedule.period.map((line, lineIndex) => (
-                    <Text key={lineIndex.toString()} fontSize="14px" lineHeight={2}>
-                      <InlineText fontWeight="bold" color={colorSet.green1}>
-                        {line.count}회 :
-                      </InlineText>
-                      {line.scheduleLine}
-                    </Text>
+                    <TimeText key={lineIndex.toString()}>
+                      <span className="font-bold text-pointColor">
+                        {line.count}회&nbsp;
+                      </span>
+                      : {line.scheduleLine}
+                    </TimeText>
                   ))
                 }
               </TimelineBox>
@@ -91,7 +92,7 @@ export default function Schedule(props) {
           </AccordionWrapper>
         ))
       }
-      <NoticeBox>
+      <NoticeBox className="mobile:hidden">
         <Text
           lineHeight={1.5}
           fontWeight="bold"
@@ -113,11 +114,12 @@ export default function Schedule(props) {
         </Text>
       </NoticeBox>
       <ApplyButton
+        className="mobile:hidden"
         onClick={() => router.push("/purchase")}
       >
         클래스 신청하기
       </ApplyButton>
-      <PricingBox>
+      <PricingBox className="mobile:hidden">
         <Text fontSize="22px" fontWeight="bold" style={{marginBottom: "7px"}}>
           20,000 <InlineText> / 시간</InlineText>
         </Text>
@@ -137,6 +139,16 @@ export default function Schedule(props) {
     </Wrapper>
   );
 }
+
+const ScheduleTitle = styled.p`
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: bold;
+  ${breakPoints.mobile} {
+    font-size: 13px;
+    line-height: 1;
+  }
+`;
 
 const PricingBox = styled.div`
   margin-top: 30px;
@@ -164,12 +176,27 @@ const TimelineBox = styled(motion.div)`
   padding: 20px;
   background: ${colorSet.gray6};
   width: 310px;
+  ${breakPoints.mobile} {
+    padding: 19px 15px;
+    width: 100%; 
+  }
 `;
 
 const AccordionWrapper = styled.div`
   border-top: 1px solid ${({index}) => index === 0 ? colorSet.gray1 : "transparent"};
   border-bottom: 1px solid ${colorSet.gray5};
   padding: 20px 0;
+  ${breakPoints.mobile} {
+    padding: 15px 0;
+  }
+`;
+
+const TimeText = styled.p`
+  font-size: 14px;
+  line-height: 2;
+  ${breakPoints.mobile} {
+    font-size: 12px;
+  }
 `;
 
 const Wrapper = styled.div` 
@@ -179,5 +206,10 @@ const Wrapper = styled.div`
   border-radius: 4px;
   top: 0;
   position: sticky;
+  
+  ${breakPoints.mobile} {
+    border: none;
+    padding: 0;
+  }
 `;
 

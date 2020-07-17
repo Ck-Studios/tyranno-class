@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {useState} from "react";
-import {colorSet, Text, InlineText, RadiusButton} from "common/theme/Theme";
+import {colorSet, Text, InlineText, RadiusButton, breakPoints} from "common/theme/Theme";
 import {useRouter} from "next/router";
 import {StageButton} from "purchase/components/partials/Partials";
 import {STAGE_SET} from "purchase/common/scheme/Scheme";
@@ -51,21 +51,14 @@ export default function SelectScheduleStage(props) {
   return (
     <div>
       <ContainerLabel>
-        <Text
-          fontSize="24px"
-          color={colorSet.white}
-        >
+        <PageTitle>
           일정 선택하기
-        </Text>
+        </PageTitle>
       </ContainerLabel>
       <ContentWrapper>
-        <Text
-          style={{marginBottom: "17px"}}
-          fontSize="18px"
-          fontWeight="bold"
-        >
+        <ClassTitle>
           HTML/CSS로 랜딩 페이지 만들기
-        </Text>
+        </ClassTitle>
         {
           SCHEDULE_SET.map((schedule, index) => (
             <AccordionWrapper
@@ -82,9 +75,9 @@ export default function SelectScheduleStage(props) {
                     <ActiveRadio/>
                   }
                 </RadioWrapper>
-                <Text fontSize="16px" lineHeight={1.5} fontWeight="bold">
+                <ScheduleTitle>
                   {schedule.title}
-                </Text>
+                </ScheduleTitle>
               </div>
               {
                 visibleIndex === index &&
@@ -96,12 +89,12 @@ export default function SelectScheduleStage(props) {
                 >
                   {
                     schedule.period.map((line, lineIndex) => (
-                      <Text key={lineIndex.toString()} fontSize="14px" lineHeight={2}>
-                        <InlineText fontWeight="bold" color={colorSet.green1}>
-                          {line.count}회 :
-                        </InlineText>
-                        {line.scheduleLine}
-                      </Text>
+                      <p key={lineIndex.toString()} className="text-14 mobile:text-12" style={{lineHeight: 2}}>
+                        <span className="font-bold text-green-1">
+                          {line.count}회
+                        </span>
+                        &nbsp;: {line.scheduleLine}
+                      </p>
                     ))
                   }
                 </TimelineBox>
@@ -118,6 +111,36 @@ export default function SelectScheduleStage(props) {
     </div>
   )
 }
+
+const ScheduleTitle = styled.p`
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: bold;
+  
+  ${breakPoints.mobile} {
+    font-size: 13px;
+    line-height: 1;
+  }
+`;
+const ClassTitle = styled.p`
+  margin-bottom: 17px;
+  font-size: 18xp;
+  font-weight: bold;
+  
+  ${breakPoints.mobile} {
+    margin-bottom: 16px;
+    font-size: 15px;
+  }
+`;
+
+const PageTitle = styled.p`
+  color: ${colorSet.white};
+  font-size: 24px;
+  font-weight: bold;
+  ${breakPoints.mobile} {
+    font-size: 22px;
+  }
+`;
 
 const ActiveRadio = styled.div`
   width: 8px;
@@ -147,12 +170,19 @@ const TimelineBox = styled(motion.div)`
   padding: 20px;
   background: ${colorSet.gray6};
   width: 100%;
+  ${breakPoints.mobile} {
+    margin-top: 12.5px;
+    padding: 19px 30px;
+  }
 `;
 
 const AccordionWrapper = styled.div`
   border-top: 1px solid ${({index}) => index === 0 ? colorSet.gray1 : "transparent"};
   border-bottom: 1px solid ${colorSet.gray5};
   padding: 20px 0 20px 6px;
+  ${breakPoints.mobile} {
+    padding: 10px 9px 10px 0;
+  }
 `;
 
 

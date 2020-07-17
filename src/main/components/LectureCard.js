@@ -100,6 +100,7 @@ const LectureTitle = styled.p`
   color: #000000;
   
   ${breakPoints.mobile} {
+    line-height: 1.44;
     width: 177px;
     font-size: 18px;
     font-weight: bold;    
@@ -118,7 +119,7 @@ const ImageWrapper = styled.div`
   height: 380px;
   background: #c1c1c1;
   ${breakPoints.mobile} {
-    height: 190px;
+    height: 180px;
   }
 `;
 
@@ -137,6 +138,7 @@ const Layout = styled.div`
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.05);
   overflow: hidden;
   ${breakPoints.mobile} {
-    height: 300px;
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.1);
+    height: auto;
   }
 `;

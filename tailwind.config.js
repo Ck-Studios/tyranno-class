@@ -1,4 +1,31 @@
 const defaultColors = require('tailwindcss/defaultTheme').colors;
+const defaultFontSize = require('tailwindcss/defaultTheme').fontSize;
+
+function generateFontSize() {
+  var fontObject = {};
+  for(var i=0; i<101; ++i) {
+    fontObject[i] = i + "px";
+  }
+
+  return fontObject;
+}
+
+function generateSpacingSize() {
+  var marginObject = {};
+  for(var i=(-500); i<501; ++i) {
+    marginObject[i] = i + "px";
+  }
+
+  return marginObject;
+}
+
+
+const fontSize = {
+  ...defaultFontSize,
+  ...generateFontSize(),
+};
+
+
 
 const colorSet = {
   ...defaultColors,
@@ -28,11 +55,14 @@ const colorSet = {
   pointColor: "#0ad28c",
 };
 
+
 module.exports = {
   purge: ['./src/**/*.{js, ts, jsx, tsx}',],
   theme: {
     colors: colorSet,
     backgroundColor: colorSet,
+    borderColor: colorSet,
+    fontSize: fontSize,
     extend: {},
     screens: {
       'mobile': {'max': '759px'},

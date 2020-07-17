@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import styled from "styled-components";
-import {colorSet, FullImage} from "common/theme/Theme";
+import {breakPoints, colorSet, FullImage} from "common/theme/Theme";
 import {useSelector, useDispatch} from "react-redux";
 import {login} from "modules/authentication";
 import {useRouter} from "next/router";
@@ -21,7 +21,7 @@ export default function LoginContainer() {
     <ContainerWrapper className="flex">
       <LeftScreen>
         <MethodFrame>
-          <ImageFrame>
+          <ImageFrame onClick={() => router.push("/main")}>
             <Image
               src="static/images/logo/tyrannologo-05.png"
             />
@@ -36,7 +36,7 @@ export default function LoginContainer() {
             <ButtonFrame
               onClick={() => dispatch(login())}
               background={colorSet.kakao}
-              className="flex justify-center align-center"
+              className="flex justify-center align-center mobile:font-bold"
             >
               카카오로 시작하기
             </ButtonFrame>
@@ -44,7 +44,7 @@ export default function LoginContainer() {
               marginTop={10}
               background={colorSet.naver}
               color={colorSet.white}
-              className="flex justify-center align-center"
+              className="flex justify-center align-center mobile:font-bold"
               onClick={() => dispatch(login())}
             >
               네이버로 시작하기
@@ -52,7 +52,7 @@ export default function LoginContainer() {
             <ButtonFrame
               marginTop={10}
               background={colorSet.google}
-              className="flex justify-center align-center"
+              className="flex justify-center align-center mobile:font-bold"
               onClick={() => dispatch(login())}
             >
               구글로 시작하기
@@ -64,7 +64,7 @@ export default function LoginContainer() {
           </NoticeBox>
         </MethodFrame>
       </LeftScreen>
-      <RightScreen>
+      <RightScreen className="mobile:hidden">
         <FullImage
           objectFit="cover"
           src="/static/images/background/class.jpg"
@@ -96,10 +96,19 @@ const ButtonFrame = styled.button`
   font-size: 16px;
   line-height: 2.63;
   color: ${({color}) => color || colorSet.black};
+  ${breakPoints.mobile} {
+    width: 100%;
+    font-size: 13px;
+    line-height: 1.62;
+    border-radius: 10px;
+  }
 `;
 
 const ButtonWrapper = styled.div`
   margin-top: 42px;
+  ${breakPoints.mobile} {
+    margin-top: 25px;
+  }
 `;
 
 const Mission = styled.h1`
@@ -107,6 +116,11 @@ const Mission = styled.h1`
   font-size: 34px;
   line-height: 1.35;
   color: ${colorSet.black};
+  ${breakPoints.mobile} {
+    margin-top: 100px;
+    font-size: 22px;
+    font-weight: bold;
+  }
 `;
 
 const Image = styled.img`
@@ -118,11 +132,20 @@ const Image = styled.img`
 const ImageFrame= styled.div`
   width: 158px;
   height: 40px;
+  
+  ${breakPoints.mobile} {
+    width: 103px;
+    height: 26px;
+  }
 `;
 
-const  MethodFrame = styled.div`
+const MethodFrame = styled.div`
   margin-right: 12.5%;
   margin-top: 85px;
+  ${breakPoints.mobile} {
+    margin-right: 0;
+    margin-top: 50px;
+  }
 `;
 
 const LeftScreen = styled.div`
@@ -130,11 +153,17 @@ const LeftScreen = styled.div`
   height: 100%;
   display: flex;
   justify-content: flex-end;
+  ${breakPoints.mobile} {
+    width: 100%;
+    display: block;
+    padding: 0 45px;
+  }
 `;
 
 const RightScreen = styled.div`
   width: 50%;
   background: ${colorSet.gray2};
+  
 `;
 
 
@@ -142,5 +171,5 @@ const ContainerWrapper = styled.div`
   display: flex;
   flex: 1;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
