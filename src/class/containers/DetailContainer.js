@@ -272,14 +272,16 @@ export default function DetailContainer() {
                   블랍즐라 소개글<br/>
                 </p>
               </CuriculumWrapper__Mobile>
-              <GradientActionButton__Mobile
-                className="desktop:hidden sticky sticky-button font-bold"
-                fontSize="16px"
-                radius="26px"
-                onClick={() => router.push("/purchase")}
-              >
-                클래스 신청하기
-              </GradientActionButton__Mobile>
+              <div className="sticky sticky-button desktop:hidden">
+                <GradientActionButton__Mobile
+                  className=" font-bold"
+                  fontSize="16px"
+                  radius="26px"
+                  onClick={() => router.push("/purchase")}
+                >
+                  클래스 신청하기
+                </GradientActionButton__Mobile>
+              </div>
             </DescriptionWrapper>
           </ClassDetailWrapper>
           <ScheduleWrapper className="mobile:hidden">
@@ -354,6 +356,8 @@ const DescriptionWrapper = styled.div`
     padding: 40px 21px;
     
     .sticky-button {
+      position: sticky;
+      position: -webkit-sticky;
       bottom: 20px;
     }
   }
